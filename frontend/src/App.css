@@ -24,16 +24,23 @@
 .toolbox-card {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.2);
+  background-color: var(--card);
+  color: var(--card-foreground);
 }
 
 .toolbox-input {
   transition: all 0.3s ease;
+  background-color: var(--input);
+  border: 1px solid var(--border);
+  color: var(--foreground);
 }
 
 .toolbox-button {
   transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
+  background-color: var(--primary);
+  color: var(--primary-foreground);
 }
 
 .toolbox-button:disabled {
@@ -43,11 +50,14 @@
 
 .toolbox-select {
   transition: all 0.3s ease;
+  background-color: var(--input);
+  border: 1px solid var(--border);
+  color: var(--foreground);
 }
 
 .toolbox-label {
   font-weight: 500;
-  color: hsl(var(--foreground));
+  color: var(--foreground);
 }
 
 .toolbox-tooltip {
@@ -68,22 +78,25 @@
 .result-table {
   border-collapse: collapse;
   width: 100%;
+  background-color: var(--card);
 }
 
 .result-table th {
-  background: hsl(var(--muted));
+  background: var(--muted);
   font-weight: 600;
   text-align: left;
   padding: 12px;
+  color: var(--foreground);
 }
 
 .result-table td {
   padding: 12px;
-  border-bottom: 1px solid hsl(var(--border));
+  border-bottom: 1px solid var(--border);
+  color: var(--foreground);
 }
 
 .result-table tr:hover {
-  background: hsl(var(--muted) / 0.5);
+  background: var(--muted);
 }
 
 .chart-container {
@@ -91,9 +104,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: var(--card);
 }
 
 .footer-text {
-  color: hsl(var(--muted-foreground));
+  color: var(--muted-foreground);
   font-size: 0.875rem;
 }
