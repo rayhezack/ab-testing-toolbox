@@ -11,16 +11,16 @@
 ssh root@你的服务器IP
 ```
 
-### 2. 执行一键修复脚本
+### 2. 执行服务器端修复脚本（推荐）
 ```bash
-# 下载修复脚本
-wget https://raw.githubusercontent.com/rayhezack/ab-testing-toolbox/main/quick-fix-styles.sh
+# 下载服务器端修复脚本
+wget https://raw.githubusercontent.com/rayhezack/ab-testing-toolbox/main/fix-server-styles.sh
 
 # 给脚本执行权限
-chmod +x quick-fix-styles.sh
+chmod +x fix-server-styles.sh
 
 # 执行修复
-./quick-fix-styles.sh
+./fix-server-styles.sh
 ```
 
 ### 3. 验证部署
@@ -34,6 +34,7 @@ chmod +x quick-fix-styles.sh
 3. **依赖冲突**：修复了 React 和 date-fns 版本冲突
 4. **构建配置**：优化了 Vite 和 PostCSS 配置
 5. **样式文件**：确保 CSS 文件能正确生成
+6. **服务器环境**：添加了针对服务器环境的特殊处理
 
 ### 📁 修复的文件
 - `frontend/src/index.css` - 添加了完整的 Tailwind CSS 导入
@@ -54,6 +55,21 @@ chmod +x quick-fix-styles.sh
 
 ## 🔍 故障排除
 
+### 如果遇到依赖冲突错误
+```bash
+# 使用 legacy-peer-deps 解决冲突
+npm install --legacy-peer-deps --force
+```
+
+### 如果 Vite 未找到
+```bash
+# 重新安装 Vite
+npm install vite --legacy-peer-deps --force
+
+# 或者使用 npx 直接运行
+npx vite build
+```
+
 ### 如果仍然没有样式
 1. 检查构建日志：
 ```bash
@@ -73,17 +89,45 @@ sudo systemctl status nginx
 ```
 
 ### 如果构建失败
-1. 清理并重新安装：
+1. 彻底清理并重新安装：
 ```bash
 cd /var/www/ab-testing-toolbox/frontend
 rm -rf node_modules dist
-npm install
+rm -f package-lock.json pnpm-lock.yaml
+npm cache clean --force
+npm install --legacy-peer-deps --force
 npm run build
 ```
 
 2. 检查 Node.js 版本：
 ```bash
 node --version  # 应该是 18.x 或更高
+npm --version   # 检查 npm 版本
+```
+
+### 手动修复步骤（如果脚本失败）
+```bash
+# 1. 进入项目目录
+cd /var/www/ab-testing-toolbox
+
+# 2. 更新代码
+git pull origin main
+
+# 3. 进入前端目录
+cd frontend
+
+# 4. 清理依赖
+rm -rf node_modules dist
+rm -f package-lock.json pnpm-lock.yaml
+
+# 5. 安装依赖（解决冲突）
+npm install --legacy-peer-deps --force
+
+# 6. 构建
+npm run build
+
+# 7. 重启 Nginx
+sudo systemctl restart nginx
 ```
 
 ## 📞 技术支持
@@ -91,8 +135,9 @@ node --version  # 应该是 18.x 或更高
 如果遇到问题，请提供：
 1. 服务器操作系统版本
 2. Node.js 版本
-3. 构建错误日志
-4. 浏览器控制台错误信息
+3. npm 版本
+4. 构建错误日志
+5. 浏览器控制台错误信息
 
 ## 🎊 部署成功！
 

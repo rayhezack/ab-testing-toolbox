@@ -20,9 +20,16 @@ rm -rf dist
 rm -f package-lock.json
 rm -f pnpm-lock.yaml
 
-# 重新安装依赖
+# 重新安装依赖（使用 legacy-peer-deps 解决冲突）
 echo "📦 重新安装依赖..."
-npm install
+npm install --legacy-peer-deps
+
+# 检查 vite 是否安装成功
+echo "🔍 检查构建工具..."
+if ! command -v npx vite &> /dev/null; then
+    echo "❌ Vite 未找到，重新安装..."
+    npm install --legacy-peer-deps
+fi
 
 # 重新构建
 echo "🔨 重新构建前端..."
