@@ -1,0 +1,206 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+:root {
+  --radius: 0.625rem;
+  --background: #F5F5F5;
+  --foreground: #333333;
+  --card: #FFFFFF;
+  --card-foreground: #333333;
+  --popover: #FFFFFF;
+  --popover-foreground: #333333;
+  --primary: #6495ED;
+  --primary-foreground: #FFFFFF;
+  --secondary: rgba(100, 149, 237, 0.2);
+  --secondary-foreground: #333333;
+  --muted: rgba(100, 149, 237, 0.1);
+  --muted-foreground: #999999;
+  --accent: #6495ED;
+  --accent-foreground: #FFFFFF;
+  --destructive: oklch(0.577 0.245 27.325);
+  --border: rgba(100, 149, 237, 0.2);
+  --input: #FFFFFF;
+  --ring: #6495ED;
+  --chart-1: #6495ED;
+  --chart-2: rgba(100, 149, 237, 0.7);
+  --chart-3: rgba(100, 149, 237, 0.5);
+  --chart-4: rgba(100, 149, 237, 0.3);
+  --chart-5: rgba(100, 149, 237, 0.1);
+  --sidebar: #FFFFFF;
+  --sidebar-foreground: #333333;
+  --sidebar-primary: #6495ED;
+  --sidebar-primary-foreground: #FFFFFF;
+  --sidebar-accent: rgba(100, 149, 237, 0.2);
+  --sidebar-accent-foreground: #333333;
+  --sidebar-border: rgba(100, 149, 237, 0.2);
+  --sidebar-ring: #6495ED;
+}
+
+.dark {
+  --background: oklch(0.145 0 0);
+  --foreground: oklch(0.985 0 0);
+  --card: oklch(0.205 0 0);
+  --card-foreground: oklch(0.985 0 0);
+  --popover: oklch(0.205 0 0);
+  --popover-foreground: oklch(0.985 0 0);
+  --primary: oklch(0.922 0 0);
+  --primary-foreground: oklch(0.205 0 0);
+  --secondary: oklch(0.269 0 0);
+  --secondary-foreground: oklch(0.985 0 0);
+  --muted: oklch(0.269 0 0);
+  --muted-foreground: oklch(0.708 0 0);
+  --accent: oklch(0.269 0 0);
+  --accent-foreground: oklch(0.985 0 0);
+  --destructive: oklch(0.704 0.191 22.216);
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 15%);
+  --ring: oklch(0.556 0 0);
+  --chart-1: oklch(0.488 0.243 264.376);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.205 0 0);
+  --sidebar-foreground: oklch(0.985 0 0);
+  --sidebar-primary: oklch(0.488 0.243 264.376);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.269 0 0);
+  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --sidebar-border: oklch(1 0 0 / 10%);
+  --sidebar-ring: oklch(0.556 0 0);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', 'Noto Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    line-height: 1.5;
+  }
+}
+
+/* Hero Section */
+.hero-section {
+  background: linear-gradient(135deg, #6495ED 0%, rgba(100, 149, 237, 0.8) 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grid" width="10" height="10" patternUnits="userSpaceOnUse"><path d="M 10 0 L 0 0 0 10" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></pattern></defs><rect width="100" height="100" fill="url(%23grid)"/></svg>');
+  opacity: 0.3;
+}
+
+.hero-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Custom styles for A/B Testing Toolbox */
+.toolbox-card {
+  @apply bg-card rounded-lg shadow-lg border border-border p-6 transition-all duration-300 hover:shadow-xl;
+}
+
+.toolbox-input {
+  @apply w-full px-3 py-2 border border-border rounded-md bg-input text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200;
+}
+
+.toolbox-button {
+  @apply bg-primary text-primary-foreground px-4 py-2 rounded-md hover:bg-primary/90 transition-all duration-200 font-medium;
+}
+
+.toolbox-button:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+.toolbox-select {
+  @apply w-full px-3 py-2 border border-border rounded-md bg-input text-foreground focus:outline-none focus:ring-2 focus:ring-ring transition-all duration-200;
+}
+
+.toolbox-label {
+  @apply block text-sm font-medium text-foreground mb-2;
+}
+
+.toolbox-tooltip {
+  @apply absolute z-10 px-2 py-1 text-xs text-white bg-gray-800 rounded shadow-lg opacity-0 transition-opacity duration-200;
+}
+
+.progress-bar {
+  @apply w-full bg-secondary rounded-full h-2;
+}
+
+.progress-fill {
+  @apply bg-primary h-2 rounded-full transition-all duration-300;
+}
+
+.result-table {
+  @apply w-full border-collapse border border-border rounded-lg overflow-hidden;
+}
+
+.result-table th {
+  @apply bg-secondary text-foreground px-4 py-2 text-left font-medium border-b border-border;
+}
+
+.result-table td {
+  @apply px-4 py-2 border-b border-border text-foreground;
+}
+
+.result-table tr:hover {
+  @apply bg-muted;
+}
+
+.chart-container {
+  @apply w-full h-64 p-4 bg-card rounded-lg border border-border;
+}
+
+.footer-text {
+  @apply text-muted-foreground text-sm text-center py-4;
+}
